@@ -14,7 +14,7 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-##In Basic Transaction Tracking
+## In Basic Transaction Tracking
 
 - Can Add/Edit/Delete transactions (amount, date, -description)
 - View the transaction list
