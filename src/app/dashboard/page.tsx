@@ -6,7 +6,7 @@ import TransactionForm from "@/components/TransactionForm";
 import TransactionList from "@/components/TransactionList";
 import ExpenseBarChart from "@/components/ExpenseBarChart";
 
-export default function Home() {
+export default function DashboardPage() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [editingTransaction, setEditingTransaction] =
     useState<Transaction | null>(null);
@@ -30,6 +30,10 @@ export default function Home() {
 
   const handleAddOrEdit = async (transaction: Transaction) => {
     if (editingTransaction) {
+      // setTransactions((prev) =>
+      //   prev.map((tx) => (tx._id === transaction._id ? transaction : tx))
+      // );
+
       console.log(transaction);
       try {
         const { _id } = transaction;
@@ -43,10 +47,8 @@ export default function Home() {
         console.log(res);
         if (res.ok) {
           // Handle editing
-          // const newTransactions = res?.transactions;
-          setTransactions((prev) =>
-            prev.map((tx) => (tx._id === transaction._id ? transaction : tx))
-          );
+          const newTransactions = res?.transactions;
+          setTransactions((prev) => [...prev, newTransactions]);
           setEditingTransaction(null); // Close the form after editing
         }
       } catch (error) {
@@ -63,10 +65,7 @@ export default function Home() {
         });
 
         if (res.ok) {
-          const data = await res.json();
-          console.log(data);
-          console.log(data.transactions);
-          fetchTransactions();
+          setTransactions((prev) => [...prev, transaction]);
         }
       } catch (error) {
         console.log(error);
@@ -114,7 +113,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Expense Bar Chart */}
           <div className="col-span-1">
-            <ExpenseBarChart transactions={transactions} />
+            {/* <ExpenseBarChart transactions={transactions} /> */}
           </div>
 
           {/* Transaction List */}
