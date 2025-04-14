@@ -1,19 +1,20 @@
-"use client";
-
 import { useState } from "react";
+import { Transaction } from "@/types/transaction";
+
+interface TransactionListProps {
+  transactions: Transaction[];
+  onDelete: (id: string) => void;
+  onEdit: (transaction: Transaction) => void;
+}
 
 export default function TransactionList({
   transactions,
   onDelete,
   onEdit,
-}: {
-  transactions: any[];
-  onDelete: (id: string) => void;
-  onEdit: (transaction: any) => void;
-}) {
-  const [editing, setEditing] = useState<any | null>(null); // Track editing state
+}: TransactionListProps) {
+  const [, setEditing] = useState<Transaction | null>(null); // Track editing state with correct type
 
-  const handleEdit = (transaction: any) => {
+  const handleEdit = (transaction: Transaction) => {
     // Set the transaction to be edited
     setEditing(transaction);
     onEdit(transaction);

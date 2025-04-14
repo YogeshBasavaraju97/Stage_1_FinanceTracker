@@ -2,6 +2,9 @@
 
 First, run the development server:
 
+set up your mongo DB and create a env file
+set MONGODB_URL
+
 ```bash
 npm run dev
 # or
