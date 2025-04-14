@@ -2,10 +2,13 @@ import connectToDatabase from "@/lib/db";
 import { Transaction } from "@/lib/models/Transaction";
 import { NextResponse } from "next/server";
 
-export async function PUT(req: Request, context: { params: { id: string } }) {
+export async function PUT(
+  req: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
   try {
     await connectToDatabase();
-    const { id } = await context.params;
+    const { id } = await params;
     const data = await req.json();
 
     const updatedTransaction = await Transaction.findByIdAndUpdate(id, data, {
@@ -29,13 +32,14 @@ export async function PUT(req: Request, context: { params: { id: string } }) {
   }
 }
 
-export async function DELETE(_: Request, context: { params: { id: string } }) {
+export async function DELETE(
+  req: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
   try {
-    // Await the dynamic route parameters
-
     // Connect to the database
     await connectToDatabase();
-    const { id } = await context.params;
+    const { id } = await params;
 
     // Find the transaction by ID and delete it
     const deletedTransaction = await Transaction.findByIdAndDelete(id);

@@ -51,7 +51,9 @@ export default function TransactionList({
                 Rs{" " + tx.amount}
               </span>
               <button
-                onClick={() => onDelete(tx._id)}
+                onClick={() => {
+                  if (tx._id) onDelete(tx._id);
+                }}
                 className="text-red-500 text-sm"
               >
                 Delete
