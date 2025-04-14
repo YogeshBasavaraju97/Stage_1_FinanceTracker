@@ -14,7 +14,6 @@ export default function Home() {
   const fetchTransactions = async () => {
     const res = await fetch("/api/transactions");
     const data = await res.json();
-    console.log(data);
 
     // Check if data contains the transactions array
     if (Array.isArray(data.transactions)) {
@@ -30,7 +29,6 @@ export default function Home() {
 
   const handleAddOrEdit = async (transaction: Transaction) => {
     if (editingTransaction) {
-      console.log(transaction);
       try {
         const { _id } = transaction;
         const res = await fetch(`/api/transactions/${_id}`, {

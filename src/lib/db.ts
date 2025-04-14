@@ -1,11 +1,23 @@
-// lib/db.ts
-
 import mongoose from "mongoose";
 
+// Connect to MongoDB
 const connectToDatabase = async () => {
-  await mongoose.connect(
-    "mongodb+srv://yogeshb0697:LFlE8uRSk4XNWg7S@fincapluse.q3a2l.mongodb.net/financeDB"
-  );
+  try {
+    // Check if there's already an existing connection to avoid multiple connections
+    if (mongoose.connections[0].readyState) {
+      console.log("Using existing MongoDB connection.");
+      return;
+    }
+    // Connect to the MongoDB database
+    await mongoose.connect(process.env.MONGODB_URL!, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("MongoDB connected successfully.");
+  } catch (error) {
+    console.error("MongoDB connection error:", error);
+    throw new Error("Could not connect to the database.");
+  }
 };
 
 export default connectToDatabase;

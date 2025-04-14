@@ -46,7 +46,9 @@ export default function TransactionList({
               </p>
             </div>
             <div className="flex gap-4 items-center">
-              <span className="text-green-600 font-bold">${tx.amount}</span>
+              <span className="text-green-600 font-bold">
+                Rs{" " + tx.amount}
+              </span>
               <button
                 onClick={() => onDelete(tx._id)}
                 className="text-red-500 text-sm"
