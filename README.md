@@ -1,25 +1,21 @@
-## Getting Started with stage 1 Finance tracker app
+## Finance tracker stage-1
 
-First, run the development server:
+live link [https://stage-2-finance-visualiser.vercel.app/]
 
-set up your mongo DB and create a env file
-set MONGODB_URL
+### Features implemented
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## In Basic Transaction Tracking
-
-- Can Add/Edit/Delete transactions (amount, date, -description)
-- View the transaction list
+- Add/Edit/Delete transactions (amount, date, -description)
+- Transaction list view
 - Single chart: Monthly expenses bar chart
-- developed with basic form validation
+- Basic form validation
+- Predefined categories for transactions
+- Category-wise pie chart
+- Dashboard with summary cards: total expenses, category breakdown, most recent transactions
+
+### setup instructions
+
+- clone the repository
+- run npm install
+- set up mongo DB and copy the URL
+- set up .env file and MONGO_URL = "your mongoDB URL"
+- run npm dev to start
